@@ -1,13 +1,6 @@
 # read-chinese
 
-A [Heroku](http://www.heroku.com) web app using Compojure.
-
-This generated project has a few basics set up beyond the bare Compojure defaults:
-
-* Cookie-backed session store
-* Stack traces when in development
-* Environment-based config via [environ](https://github.com/weavejester/environ)
-* [HTTP-based REPL debugging](https://devcenter.heroku.com/articles/debugging-clojure) via [drawbridge](https://github.com/cemerick/drawbridge)
+An alternative interface to google translate for studying chinese [http://read-chinese.herokuapp.com](http://read-chinese.herokuapp.com).
 
 ## Usage
 
