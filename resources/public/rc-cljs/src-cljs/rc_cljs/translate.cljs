@@ -7,7 +7,7 @@
 
 (def p #(-> % pr-str println))
 (def phrase-i (atom 0))
-(def mode (atom "test"))
+(def mode (atom "review"))
 (def input (atom ""))
 
 (defn advance-char
