@@ -1,0 +1,78 @@
+input[type=text].wide-input {
+  width: 100px;
+}
+
+input[type=text].super-wide-input {
+  width: 150px;
+}
+
+input[type=password] {
+  width: 100px;
+}
+
+.value-cell {
+  text-align: right;
+}
+
+.warning {
+  background-color: rgb(255, 160, 66);
+}
+
+.country-inheritance,.bloomberg-inheritance {
+  color: gray;
+}
+
+td,th {
+  padding: 0.2em; /*note padding color below */
+}
+
+.overridden {
+  background-color: rgb(255, 255, 128);
+}
+
+.not-found {
+  background-color: rgb(255, 128, 128);
+}
+
+.not-found-yet {
+  background-color: rgb(255, 255, 128);
+}
+
+.bloomberg-row {
+  background-color: rgb(132, 211, 255)
+}
+
+.bloomberg-color {
+  color: rgb(132, 211, 255)
+}
+
+.development {
+  background-color: rgb(255, 224, 224);
+}
+
+/*header and footer*/
+
+@media screen {
+  div.footer {
+    display: none;
+  }
+}
+@media print {
+  div.footer {
+    position: fixed;
+    bottom: 0;
+  }
+}
+
+@media screen {
+  div.header {
+    display: none;
+  }
+}
+@media print {
+  div.header {
+    position: fixed;
+    top: 0;
+  }
+}
+
