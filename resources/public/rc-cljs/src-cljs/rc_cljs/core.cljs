@@ -13,12 +13,6 @@
 (defn space-interpose [s]
   (apply str (interpose " " s)))
 
-#_(defn bound [x [lower upper]]
-  (max (min x upper) lower))
-
-#_(defn insert-at [i s val]
-  (concat (take i s) val (drop i s)))
-
 (defn apply-interpose [i s]
   (apply str (interpose i s)))
 

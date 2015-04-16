@@ -16,11 +16,13 @@
 (defn pr-response [x]
   (response/response (pr-str x)))
 
+(defonce recent-texts (atom {}))
+
 (defroutes app
   (GET "/" []
-       (index/blank-page "root" {}))
-  (ANY "/translate" [file-selector text :as req]
-        (let [
+       (index/blank-page "root" {"recent_texts" (pr-str (keys @recent-texts))}))
+  (ANY "/translate" [file-selector text title]
+       (let [
              {:keys [size tempfile]} file-selector
              text (if text (.trim text))
              to-translate
@@ -29,9 +31,19 @@
               (not-empty text) text
               :default (slurp "resources/sample.txt"))
              phrases (translate/translate2 to-translate)
+             title (if (and title (not= "" (.trim title)))
+                     title
+                     "<blank>")
              ]
+         (if (or (and size (not= 0 size)) (not-empty text))
+           (swap! recent-texts assoc title phrases))
          (index/blank-page "translate"
-                           {"phrases" phrases})))
+                           {"phrases" (pr-str phrases)})))
+  (ANY "/recent" [k]
+       (if-let [phrases (@recent-texts k)]
+         (index/blank-page "translate"
+                           {"phrases" (pr-str phrases)})
+         (response/redirect "/")))
   (route/resources "/")
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
@@ -59,4 +71,4 @@
 
 ;; For interactive development:
 ;; (.stop server)
-(defonce server (-main))
+;; (defonce server (-main))

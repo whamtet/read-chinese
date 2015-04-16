@@ -21,6 +21,7 @@
            :method "POST"
            :enc-type "multipart/form-data"
            }
+    "Title " [:input {:type "text" :name "title"}][:br][:br]
     [:input {:type "file"
              :name "file-selector"
              :on-change file-selector-changed
@@ -30,7 +31,12 @@
                 :rows 20
                 }][:br]
     [:input {:type "submit"}]
-    ]])
+    ]
+   [:h2 "Recent"]
+   (for [text @recent-texts]
+     ^{:key text}
+     [:div [:a {:href (core/url "/recent" {"k" text})} text]])
+   ])
 
    (defn main []
      (core/page2 content))
