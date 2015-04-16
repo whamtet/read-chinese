@@ -13,10 +13,12 @@
 (defn advance-char
   "advance char if matches"
   []
-  (if (and
+  (when (and
        (= @input (first (nth (seq @phrases) @phrase-i)))
        (< @phrase-i (dec (count @phrases))))
-    (swap! phrase-i inc)))
+    (swap! phrase-i inc)
+    (reset! input "")
+    ))
 
 (defn main-pane
   "pane that shows or takes user input"
