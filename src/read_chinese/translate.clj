@@ -94,7 +94,7 @@
 (defn translate
   "takes chinese text and outputs a map of phrases to vectors of [pinyin english-translation]"
   [q]
-  (apply merge (map #(parse-resp (translate-section %)) (partition-text q))))
+  (apply merge (pmap #(parse-resp (translate-section %)) (partition-text q))))
 
 (def translate2 (memoize translate))
 
