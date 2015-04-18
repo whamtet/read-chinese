@@ -33,10 +33,19 @@
     [:input {:type "submit"}]
     ]
    [:h2 "Recent"]
-   (for [text @recent-texts]
-     ^{:key text}
-     [:div [:a {:href (core/url "/recent" {"k" text})} text]])
+   [:table
+    [:tbody
+     [:tr
+      [:td
+       (for [text @recent-texts]
+         ^{:key text}
+         [:div [:a {:href (core/url "/recent" {"k" text})} text]])]
+      [:td
+       (for [text @reference-texts]
+         ^{:key (str "ref" text)}
+         [:div [:a {:href (core/url "/reference" {"k" text})} text]])
+       ]]]]
    ])
 
-   (defn main []
-     (core/page2 content))
+(defn main []
+  (core/page2 content))

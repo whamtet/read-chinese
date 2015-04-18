@@ -13,14 +13,23 @@
             [read-chinese.translate :as translate]
             ))
 
+(import java.io.File)
+
 (defn pr-response [x]
   (response/response (pr-str x)))
 
 (defonce recent-texts (atom {}))
 
+(defn reference-files []
+  (for [f (file-seq (File. "resources/reference"))
+        :when (.isFile f)]
+    (.getName f)))
+
 (defroutes app
   (GET "/" []
-       (index/blank-page "root" {"recent_texts" (pr-str (keys @recent-texts))}))
+       (index/blank-page "root" {"recent_texts" (pr-str (keys @recent-texts))
+                                 "reference_texts" (pr-str (reference-files))
+                                 }))
   (ANY "/translate" [file-selector text title]
        (let [
              {:keys [size tempfile]} file-selector
@@ -44,6 +53,9 @@
          (index/blank-page "translate"
                            {"phrases" (pr-str phrases)})
          (response/redirect "/")))
+  (ANY "/reference" [k]
+       (index/blank-page "translate"
+                         {"phrases" (pr-str (translate/translate2 (slurp (str "resources/reference/" k))))}))
   (route/resources "/")
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
