@@ -20,10 +20,15 @@
 
 (defonce recent-texts (atom {}))
 
-(defn reference-files []
+(def slurp-resource #(slurp (clojure.java.io/resource %)))
+
+#_(defn reference-files []
   (for [f (file-seq (File. "resources/reference"))
         :when (.isFile f)]
     (.getName f)))
+
+(defn reference-files []
+  (seq (.split (slurp-resource "resource-list.txt") "\n")))
 
 (defroutes app
   (GET "/" []
@@ -55,7 +60,7 @@
          (response/redirect "/")))
   (ANY "/reference" [k]
        (index/blank-page "translate"
-                         {"phrases" (pr-str (translate/translate2 (slurp (str "resources/reference/" k))))}))
+                         {"phrases" (pr-str (translate/translate2 (slurp-resource (str "reference/" k))))}))
   (route/resources "/")
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
@@ -78,6 +83,7 @@
       (site {:session {:store store}})))
 
 (defn -main [& [port]]
+  (println (pr-str (reference-files)))
   (let [port (Integer. (or port (env :port) 5000))]
     (jetty/run-jetty (wrap-app #'app) {:port port :join? false})))
 
