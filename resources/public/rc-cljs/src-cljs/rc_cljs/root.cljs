@@ -12,6 +12,8 @@
 (defn file-selector-changed []
   (.submit (js/$ "#selector-form")))
 
+(def jyutping? (atom true))
+
 (defn content []
   [:div
    "Select File to Translate, Paste or " [:a {:href "/translate"} "Example"][:br][:br]
@@ -21,7 +23,13 @@
            :method "POST"
            :enc-type "multipart/form-data"
            }
-    "Title " [:input {:type "text" :name "title"}][:br][:br]
+    "Title " [:input {:type "text" :name "title"}]
+    " Jyutping " [:input {:type "checkbox"
+                          :name "jyutping"
+                          :checked @jyutping?
+                          :on-change #(reset! jyutping? (-> % .-target .-checked))
+                          }]
+    [:br][:br]
     [:input {:type "file"
              :name "file-selector"
              :on-change file-selector-changed
@@ -35,17 +43,23 @@
    [:h2 "Recent"]
    [:table
     [:tbody
-     [:tr
-      [:td
-       (for [text @recent-texts]
-         ^{:key text}
-         [:div [:a {:href (core/url "/recent" {"k" text})} text]])]
-      [:td
-       (for [text @reference-texts]
-         ^{:key (str "ref" text)}
-         [:div [:a {:href (core/url "/reference" {"k" text})} text]])
-       ]]]]
+     (let [
+           jyutping? @jyutping?
+           ]
+       [:tr
+        [:td
+         (for [text @recent-texts]
+           ^{:key text}
+           [:div [:a {:href (core/url "/recent" {"k" text "jyutping" jyutping?})} text]])]
+        [:td
+         (for [text @reference-texts]
+           ^{:key (str "ref" text)}
+           [:div [:a {:href (core/url "/reference" {"k" text "jyutping" jyutping?})} text]])
+         ]])]]
    ])
 
 (defn main []
   (core/page2 content))
+
+(defn t []
+  (println @jyutping))

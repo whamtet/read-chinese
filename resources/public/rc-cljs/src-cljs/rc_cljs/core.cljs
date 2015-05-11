@@ -57,7 +57,11 @@
     (if (= -1 (.indexOf a b)) a (recur (.replace a b c)))))
 
 (defn safe-name [x]
-  (if x (name x) ""))
+  (cond
+   (= true x) (str x)
+   (= false x) "false"
+   x (name x)
+   :default ""))
 
 (defn url [host m]
   (str (apply str host "?" (interpose "&" (map (fn [[k v]] (str (safe-name k) "=" (replace-all (safe-name v) " " "%20"))) m)))))

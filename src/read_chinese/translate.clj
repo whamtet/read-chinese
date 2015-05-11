@@ -7,6 +7,17 @@
 (import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat)
 (import net.sourceforge.pinyin4j.PinyinHelper)
 
+;for jyutping
+(def jyutping-map
+  (into {}
+        (for [line (.split (slurp "resources/IdxJyutping.txt") "\n")
+              :let [
+                    [a b] (.split line ":")
+                    a (.charAt a 0)
+                    ]
+              ]
+          [a b])))
+
 (def p #(-> % pr-str println))
 
 (defn han-only
@@ -76,7 +87,7 @@
    (PinyinHelper/toHanyuPinyinStringArray
     c output-format)))
 
-(defn parse-resp [d]
+(defn parse-resp [d jyutping?]
   (let [
         details (nth d 2)
         ]
@@ -85,7 +96,8 @@
                 :let [
                       char (han-only (first detail))
                       translations (map first (nth detail 2))
-                      pinyin (apply str (map han->pinyin char))
+                      pinyinizer (if jyutping? jyutping-map han->pinyin)
+                      pinyin (apply str (map pinyinizer char))
                       ]
                 :when (not-empty char)
                 ]
@@ -93,10 +105,10 @@
 
 (defn translate
   "takes chinese text and outputs a map of phrases to vectors of [pinyin english-translation]"
-  [q]
-  (apply merge (pmap #(parse-resp (translate-section %)) (partition-text q))))
+  [q jyutping?]
+  (apply merge (pmap #(parse-resp (translate-section %) jyutping?) (partition-text q))))
 
 (def translate2 (memoize translate))
 
-(defn pinyinize [s]
+#_(defn pinyinize [s]
   (apply str (map #(if (han? %) (str (han->pinyin %) " ") %) s)))

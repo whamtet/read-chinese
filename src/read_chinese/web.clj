@@ -35,7 +35,7 @@
        (index/blank-page "root" {"recent_texts" (pr-str (keys @recent-texts))
                                  "reference_texts" (pr-str (reference-files))
                                  }))
-  (ANY "/translate" [file-selector text title]
+  (ANY "/translate" [file-selector text title jyutping]
        (let [
              {:keys [size tempfile]} file-selector
              text (if text (.trim text))
@@ -44,7 +44,8 @@
               (and size (not= 0 size)) (slurp tempfile)
               (not-empty text) text
               :default (slurp "resources/sample.txt"))
-             phrases (translate/translate2 to-translate)
+             jyutping? (= "true" jyutping)
+             phrases (translate/translate2 to-translate jyutping?)
              title (if (and title (not= "" (.trim title)))
                      title
                      "<blank>")
@@ -58,9 +59,12 @@
          (index/blank-page "translate"
                            {"phrases" (pr-str phrases)})
          (response/redirect "/")))
-  (ANY "/reference" [k]
+  (ANY "/reference" [k jyutping]
        (index/blank-page "translate"
-                         {"phrases" (pr-str (translate/translate2 (slurp-resource (str "reference/" k))))}))
+                         {"phrases" (pr-str (translate/translate2
+                                             (slurp-resource (str "reference/" k))
+                                             (= "true" jyutping)
+                                             ))}))
   (route/resources "/")
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
