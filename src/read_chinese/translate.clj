@@ -18,6 +18,16 @@
               ]
           [a b])))
 
+(def simplified->trad
+  (into {}
+        (for [line (.split (slurp "resources/IdxTraditional.txt") "\n")
+              :let [
+                    [[a b] c] (.split line ":")
+                    ]
+              :when (not b)
+              ]
+          [a c])))
+
 (def p #(-> % pr-str println))
 
 (defn han-only
@@ -46,12 +56,13 @@
 (defn translate-section
   "hacks google translate"
   [q]
-  (->
-   (client/get (str path (URLEncoder/encode q "UTF8"))
-               {:cookie-store cookie-store})
-   :body
-   read-string;coincedentally the output is consistent with edn!!!
-   ))
+  (let [
+        s
+        (->
+         (client/get (str path (URLEncoder/encode q "UTF8"))
+                     {:cookie-store cookie-store})
+         :body)]
+    (read-string s)))
 
 (defn partition-text
   "partitions into sentences as close as possible to 150 chars in total"
@@ -95,11 +106,16 @@
           (for [detail details
                 :let [
                       char (han-only (first detail))
+                      ]
+                :when (not-empty char)
+                :let [
                       translations (map first (nth detail 2))
                       pinyinizer (if jyutping? jyutping-map han->pinyin)
                       pinyin (apply str (map pinyinizer char))
+                      char (if jyutping?
+                             (apply str (map #(simplified->trad % %) char))
+                             char)
                       ]
-                :when (not-empty char)
                 ]
             [char [pinyin translations]]))))
 
@@ -111,4 +127,4 @@
 (def translate2 (memoize translate))
 
 #_(defn pinyinize [s]
-  (apply str (map #(if (han? %) (str (han->pinyin %) " ") %) s)))
+    (apply str (map #(if (han? %) (str (han->pinyin %) " ") %) s)))
