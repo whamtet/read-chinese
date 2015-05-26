@@ -6,28 +6,37 @@
 
 (def p #(-> % pr-str println))
 
+(defn script [src]
+  [:script (slurp (str "resources/public" src))])
+
+(defn style [href]
+  ;[:link {:rel "stylesheet" :type "text/css" :href href}]
+  [:style {:type "text/css"}
+   (slurp (str "resources/public" href))]
+  )
+
 (defn- response [& body]
   {:status 200
    :headers {"Content-Type" "Content-Type: text/html; charset=utf-8"}
    :body
    (hiccup/html5
-    [:header
+    [:head
      [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge"}]
      [:meta {:charset "UTF-8"}]
-     [:link {:rel "stylesheet" :type "text/css" :href "/style.css"}]
-     [:link {:rel "stylesheet" :type "text/css" :href "/jquery-ui.css"}]
-     [:script {:src "/jquery.js"}]
-     [:script {:src "/rc-cljs/out/goog/base.js"}]
-     [:script {:src "/rc-cljs/rc_cljs.js"}]
-     [:script {:src "/react-0.9.0.js"}]
+     (style "/style.css")
+     (style "/jquery-ui.css")
+     (script "/jquery.js")
+;     [:script {:src "/rc-cljs/out/goog/base.js"}]
+     (script "/rc-cljs/rc_cljs.js")
+     (script "/react-0.9.0.js")
      [:script "
       goog.require('rc_cljs.root')
       goog.require('rc_cljs.translate')
       $(function() {
       })
       "]
-     [:script {:src "/rc.js"}]
-     [:script {:src "/jquery-ui.js"}]
+     (script "/rc.js")
+     (script "/jquery-ui.js")
      ]
     [:body
      body

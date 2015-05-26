@@ -31,7 +31,7 @@
              :compiler
              {:output-to "rc_cljs.js"
               :output-dir "out"
-              :optimizations :none
+              :optimizations :simple
               :pretty-print true
               :preamble ["reagent/react.js"]
               }}}}

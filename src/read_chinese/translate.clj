@@ -11,10 +11,7 @@
 (def jyutping-map
   (into {}
         (for [line (.split (slurp "resources/IdxJyutping.txt") "\n")
-              :let [
-                    [a b] (.split line ":")
-                    a (.charAt a 0)
-                    ]
+              :let [[[a] b] (.split line ":")]
               ]
           [a b])))
 
@@ -49,9 +46,10 @@
 
 (def path "https://translate.google.com/translate_a/single?client=t&sl=auto&tl=en&hl=en&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&dt=at&ie=UTF-8&oe=UTF-8&pc=1&otf=1&ssel=0&tsel=0&tk=519404|591318&q=")
 
-(defonce cookie-store (let [cookie-store (clj-http.cookies/cookie-store)]
+(def cookie-store #_(let [cookie-store (clj-http.cookies/cookie-store)]
                         (client/get "https://translate.google.com" {:cookie-store cookie-store})
                         cookie-store))
+
 
 (defn translate-section
   "hacks google translate"
