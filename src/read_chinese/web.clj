@@ -65,6 +65,9 @@
                                              (slurp-resource (str "reference/" k))
                                              (= "true" jyutping)
                                              ))}))
+  (ANY "/jyutping" []
+       (index/blank-page "jyutping"
+                         {"m" (pr-str translate/jyutping-map)}))
   (route/resources "/")
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
@@ -93,4 +96,4 @@
 
 ;; For interactive development:
 ;; (.stop server)
-;; (defonce server (-main))
+;; (def server (-main))

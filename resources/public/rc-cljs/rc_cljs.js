@@ -22040,16 +22040,16 @@ cljs.core.fn_QMARK_ = function(a) {
 };
 cljs.core.with_meta = function with_meta(b, c) {
   return cljs.core.fn_QMARK_.call(null, b) && !(b ? b.cljs$lang$protocol_mask$partition0$ & 262144 || b.cljs$core$IWithMeta$ || (b.cljs$lang$protocol_mask$partition0$ ? 0 : cljs.core.native_satisfies_QMARK_.call(null, cljs.core.IWithMeta, b)) : cljs.core.native_satisfies_QMARK_.call(null, cljs.core.IWithMeta, b)) ? with_meta.call(null, function() {
-    "undefined" === typeof cljs.core.t5532 && (cljs.core.t5532 = function(b, c, f, g) {
+    "undefined" === typeof cljs.core.t5533 && (cljs.core.t5533 = function(b, c, f, g) {
       this.meta = b;
       this.o = c;
       this.with_meta = f;
-      this.meta5533 = g;
+      this.meta5534 = g;
       this.cljs$lang$protocol_mask$partition1$ = 0;
       this.cljs$lang$protocol_mask$partition0$ = 393217;
-    }, cljs.core.t5532.cljs$lang$type = !0, cljs.core.t5532.cljs$lang$ctorStr = "cljs.core/t5532", cljs.core.t5532.cljs$lang$ctorPrWriter = function(b, c, f) {
-      return cljs.core._write.call(null, c, "cljs.core/t5532");
-    }, cljs.core.t5532.prototype.call = function() {
+    }, cljs.core.t5533.cljs$lang$type = !0, cljs.core.t5533.cljs$lang$ctorStr = "cljs.core/t5533", cljs.core.t5533.cljs$lang$ctorPrWriter = function(b, c, f) {
+      return cljs.core._write.call(null, c, "cljs.core/t5533");
+    }, cljs.core.t5533.prototype.call = function() {
       var b = function(b, c) {
         return cljs.core.apply.call(null, b.o, c);
       }, c = function(c, e) {
@@ -22066,9 +22066,9 @@ cljs.core.with_meta = function with_meta(b, c) {
       };
       c.cljs$core$IFn$_invoke$arity$variadic = b;
       return c;
-    }(), cljs.core.t5532.prototype.apply = function(b, c) {
+    }(), cljs.core.t5533.prototype.apply = function(b, c) {
       return this.call.apply(this, [this].concat(cljs.core.aclone.call(null, c)));
-    }, cljs.core.t5532.prototype.cljs$core$IFn$_invoke$arity$2 = function() {
+    }, cljs.core.t5533.prototype.cljs$core$IFn$_invoke$arity$2 = function() {
       var b = function(b) {
         return cljs.core.apply.call(null, self__.o, b);
       }, c = function(c) {
@@ -22083,14 +22083,14 @@ cljs.core.with_meta = function with_meta(b, c) {
       };
       c.cljs$core$IFn$_invoke$arity$variadic = b;
       return c;
-    }(), cljs.core.t5532.prototype.cljs$core$Fn$ = !0, cljs.core.t5532.prototype.cljs$core$IMeta$_meta$arity$1 = function(b) {
-      return this.meta5533;
-    }, cljs.core.t5532.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(b, c) {
-      return new cljs.core.t5532(this.meta, this.o, this.with_meta, c);
-    }, cljs.core.__GT_t5532 = function(b, c, f, g) {
-      return new cljs.core.t5532(b, c, f, g);
+    }(), cljs.core.t5533.prototype.cljs$core$Fn$ = !0, cljs.core.t5533.prototype.cljs$core$IMeta$_meta$arity$1 = function(b) {
+      return this.meta5534;
+    }, cljs.core.t5533.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = function(b, c) {
+      return new cljs.core.t5533(this.meta, this.o, this.with_meta, c);
+    }, cljs.core.__GT_t5533 = function(b, c, f, g) {
+      return new cljs.core.t5533(b, c, f, g);
     });
-    return new cljs.core.t5532(c, b, with_meta, null);
+    return new cljs.core.t5533(c, b, with_meta, null);
   }(), c) : null == b ? null : cljs.core._with_meta.call(null, b, c);
 };
 cljs.core.meta = function(a) {
@@ -42763,6 +42763,21 @@ rc_cljs.translate.main = function() {
     return cljs.core.first.call(null, cljs.core.second.call(null, a));
   }, cljs.core.compare, cljs.core.deref.call(null, rc_cljs.translate.phrases)));
   return rc_cljs.core.page2.call(null, rc_cljs.translate.content);
+};
+rc_cljs.jyutping = {};
+rc_cljs.jyutping.input = reagent.core.atom.call(null, "");
+rc_cljs.jyutping.output = reagent.core.atom.call(null, "");
+rc_cljs.jyutping.content = function() {
+  return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div", "div", 1014003715), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "input", "input", 1114262332), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "type", "type", 1017479852), "text", new cljs.core.Keyword(null, "value", "value", 1125876963), cljs.core.deref.call(null, rc_cljs.jyutping.input), 
+  new cljs.core.Keyword(null, "on-change", "on-change", 606853840), function(a) {
+    return cljs.core.reset_BANG_.call(null, rc_cljs.jyutping.input, a.target.value);
+  }], null)], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "input", "input", 1114262332), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "type", "type", 1017479852), "button", new cljs.core.Keyword(null, "value", "value", 1125876963), "Convert", new cljs.core.Keyword(null, "on-click", "on-click", 1416542092), function() {
+    var a = cljs.core.deref.call(null, rc_cljs.jyutping.m).call(null, cljs.core.deref.call(null, rc_cljs.jyutping.input));
+    return cljs.core.truth_(a) ? (cljs.core.reset_BANG_.call(null, rc_cljs.jyutping.input, ""), cljs.core.reset_BANG_.call(null, rc_cljs.jyutping.output, a)) : null;
+  }], null)], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div", "div", 1014003715), cljs.core.deref.call(null, rc_cljs.jyutping.output)], null)], null);
+};
+rc_cljs.jyutping.main = function() {
+  return rc_cljs.core.page2.call(null, rc_cljs.jyutping.content);
 };
 rc_cljs.root = {};
 rc_cljs.root.p = function(a) {

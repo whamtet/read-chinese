@@ -25,8 +25,8 @@ var tags = null;if (arguments.length > 0) {
   tags = cljs.core.array_seq(Array.prototype.slice.call(arguments, 0),0);} 
 return html__delegate.call(this,tags);};
 html.cljs$lang$maxFixedArity = 0;
-html.cljs$lang$applyTo = (function (arglist__6769){
-var tags = cljs.core.seq(arglist__6769);
+html.cljs$lang$applyTo = (function (arglist__6770){
+var tags = cljs.core.seq(arglist__6770);
 return html__delegate(tags);
 });
 html.cljs$core$IFn$_invoke$arity$variadic = html__delegate;
