@@ -42788,51 +42788,10 @@ rc_cljs.root.file_selector_changed = function() {
 };
 rc_cljs.root.jyutping_QMARK_ = reagent.core.atom.call(null, !0);
 rc_cljs.root.content = function() {
-  return new cljs.core.PersistentVector(null, 8, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div", "div", 1014003715), "Select File to Translate, Paste or ", new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "a", "a", 1013904339), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "href", "href", 1017115293), "/translate"], null), "Example"], null), new cljs.core.PersistentVector(null, 1, 
-  5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "br", "br", 1013907394)], null), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "br", "br", 1013907394)], null), new cljs.core.PersistentVector(null, 14, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "form", "form", 1017053238), new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "id", "id", 1013907597), "selector-form", 
-  new cljs.core.Keyword(null, "action", "action", 3885920680), "/translate", new cljs.core.Keyword(null, "method", "method", 4231316563), "POST", new cljs.core.Keyword(null, "enc-type", "enc-type", 2664666047), "multipart/form-data"], null), "Title ", new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "input", "input", 1114262332), new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "type", "type", 1017479852), "text", 
-  new cljs.core.Keyword(null, "name", "name", 1017277949), "title"], null)], null), " Jyutping ", new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "input", "input", 1114262332), new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null, "type", "type", 1017479852), "checkbox", new cljs.core.Keyword(null, "name", "name", 1017277949), "jyutping", new cljs.core.Keyword(null, "checked", "checked", 1756218137), cljs.core.deref.call(null, 
-  rc_cljs.root.jyutping_QMARK_), new cljs.core.Keyword(null, "on-change", "on-change", 606853840), function(a) {
-    return cljs.core.reset_BANG_.call(null, rc_cljs.root.jyutping_QMARK_, a.target.checked);
-  }], null)], null), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "br", "br", 1013907394)], null), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "br", "br", 1013907394)], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "input", "input", 1114262332), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, 
-  "type", "type", 1017479852), "file", new cljs.core.Keyword(null, "name", "name", 1017277949), "file-selector", new cljs.core.Keyword(null, "on-change", "on-change", 606853840), rc_cljs.root.file_selector_changed], null)], null), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "br", "br", 1013907394)], null), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "br", "br", 1013907394)], 
-  null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "textarea", "textarea", 4305627820), new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null, "name", "name", 1017277949), "text", new cljs.core.Keyword(null, "style", "style", 1123684643), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "width", "width", 1127031096), "90%"], null), new cljs.core.Keyword(null, "rows", "rows", 1017410891), 20], 
-  null)], null), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "br", "br", 1013907394)], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "input", "input", 1114262332), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "type", "type", 1017479852), "submit"], null)], null)], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, 
-  [new cljs.core.Keyword(null, "h2", "h2", 1013907516), "Recent"], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "table", "table", 1124020032), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "tbody", "tbody", 1124062088), function() {
+  return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div", "div", 1014003715), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "h2", "h2", 1013907516), "Texts"], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "table", "table", 1124020032), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, 
+  [new cljs.core.Keyword(null, "tbody", "tbody", 1124062088), function() {
     var a = cljs.core.deref.call(null, rc_cljs.root.jyutping_QMARK_);
-    return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "tr", "tr", 1013907952), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "td", "td", 1013907938), function() {
-      return function c(d) {
-        return new cljs.core.LazySeq(null, function() {
-          for (;;) {
-            var e = cljs.core.seq.call(null, d);
-            if (e) {
-              if (cljs.core.chunked_seq_QMARK_.call(null, e)) {
-                var f = cljs.core.chunk_first.call(null, e), g = cljs.core.count.call(null, f), h = cljs.core.chunk_buffer.call(null, g);
-                a: {
-                  for (var k = 0;;) {
-                    if (k < g) {
-                      var l = cljs.core._nth.call(null, f, k);
-                      cljs.core.chunk_append.call(null, h, cljs.core.with_meta(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div", "div", 1014003715), new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "a", "a", 1013904339), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "href", "href", 1017115293), rc_cljs.core.url.call(null, "/recent", new cljs.core.PersistentArrayMap(null, 
-                      2, ["k", l, "jyutping", a], null))], null), l], null)], null), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "key", "key", 1014010321), l], null)));
-                      k += 1;
-                    } else {
-                      f = !0;
-                      break a;
-                    }
-                  }
-                  f = void 0;
-                }
-                return f ? cljs.core.chunk_cons.call(null, cljs.core.chunk.call(null, h), c.call(null, cljs.core.chunk_rest.call(null, e))) : cljs.core.chunk_cons.call(null, cljs.core.chunk.call(null, h), null);
-              }
-              h = cljs.core.first.call(null, e);
-              return cljs.core.cons.call(null, cljs.core.with_meta(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "div", "div", 1014003715), new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "a", "a", 1013904339), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "href", "href", 1017115293), rc_cljs.core.url.call(null, "/recent", new cljs.core.PersistentArrayMap(null, 
-              2, ["k", h, "jyutping", a], null))], null), h], null)], null), new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null, "key", "key", 1014010321), h], null)), c.call(null, cljs.core.rest.call(null, e)));
-            }
-            return null;
-          }
-        }, null, null);
-      }.call(null, cljs.core.deref.call(null, rc_cljs.root.recent_texts));
-    }()], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "td", "td", 1013907938), function() {
+    return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "tr", "tr", 1013907952), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "td", "td", 1013907938)], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "td", "td", 1013907938), function() {
       return function c(d) {
         return new cljs.core.LazySeq(null, function() {
           for (;;) {

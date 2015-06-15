@@ -16,31 +16,31 @@
 
 (defn content []
   [:div
-   "Select File to Translate, Paste or " [:a {:href "/translate"} "Example"][:br][:br]
-   [:form {
-           :id "selector-form"
-           :action "/translate"
-           :method "POST"
-           :enc-type "multipart/form-data"
-           }
-    "Title " [:input {:type "text" :name "title"}]
-    " Jyutping " [:input {:type "checkbox"
-                          :name "jyutping"
-                          :checked @jyutping?
-                          :on-change #(reset! jyutping? (-> % .-target .-checked))
-                          }]
-    [:br][:br]
-    [:input {:type "file"
-             :name "file-selector"
-             :on-change file-selector-changed
-             }][:br][:br]
-    [:textarea {:name "text"
-                :style {:width "90%"}
-                :rows 20
-                }][:br]
-    [:input {:type "submit"}]
-    ]
-   [:h2 "Recent"]
+;   "Select File to Translate, Paste or " [:a {:href "/translate"} "Example"][:br][:br]
+;;    [:form {
+;;            :id "selector-form"
+;;            :action "/translate"
+;;            :method "POST"
+;;            :enc-type "multipart/form-data"
+;;            }
+;;     "Title " [:input {:type "text" :name "title"}]
+;;     " Jyutping " [:input {:type "checkbox"
+;;                           :name "jyutping"
+;;                           :checked @jyutping?
+;;                           :on-change #(reset! jyutping? (-> % .-target .-checked))
+;;                           }]
+;;     [:br][:br]
+;;     [:input {:type "file"
+;;              :name "file-selector"
+;;              :on-change file-selector-changed
+;;              }][:br][:br]
+;;     [:textarea {:name "text"
+;;                 :style {:width "90%"}
+;;                 :rows 20
+;;                 }][:br]
+;;     [:input {:type "submit"}]
+;;     ]
+   [:h2 "Texts"]
    [:table
     [:tbody
      (let [
@@ -48,7 +48,7 @@
            ]
        [:tr
         [:td
-         (for [text @recent-texts]
+         #_(for [text @recent-texts]
            ^{:key text}
            [:div [:a {:href (core/url "/recent" {"k" text "jyutping" jyutping?})} text]])]
         [:td
