@@ -46,10 +46,12 @@
 
 (def path "https://translate.google.com/translate_a/single?client=t&sl=auto&tl=en&hl=en&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&dt=at&ie=UTF-8&oe=UTF-8&pc=1&otf=1&ssel=0&tsel=0&tk=519404|591318&q=")
 
-(declare cookie-store)
-#_(defonce cookie-store (let [cookie-store (clj-http.cookies/cookie-store)]
-                        (client/get "https://translate.google.com" {:cookie-store cookie-store})
-                        cookie-store))
+(defonce cookie-store
+  (try
+    (let [cookie-store (clj-http.cookies/cookie-store)]
+      (client/get "https://translate.google.com" {:cookie-store cookie-store})
+      cookie-store))
+  (catch Exception e (println e)))
 
 
 (defn translate-section
@@ -122,6 +124,8 @@
   "takes chinese text and outputs a map of phrases to vectors of [pinyin english-translation]"
   [q jyutping?]
   (apply merge (pmap #(parse-resp (translate-section %) jyutping?) (partition-text q))))
+
+(def translate2 (memoize translate))
 
 (defn translate-f [f]
   (spit
