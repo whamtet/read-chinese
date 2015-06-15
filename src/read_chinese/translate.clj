@@ -50,8 +50,8 @@
   (try
     (let [cookie-store (clj-http.cookies/cookie-store)]
       (client/get "https://translate.google.com" {:cookie-store cookie-store})
-      cookie-store))
-  (catch Exception e (println e)))
+      cookie-store)
+  (catch Exception e (println e))))
 
 
 (defn translate-section
