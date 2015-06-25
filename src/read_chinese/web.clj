@@ -61,7 +61,9 @@
          (response/redirect "/")))
   (ANY "/reference" [k jyutping]
        (index/blank-page "translate"
-                         {"phrases" (pr-str (translate/translate2
+                         {"phrases"
+                          (slurp (str "resources/translated/" k))
+                          #_(pr-str (translate/translate2
                                              (slurp-resource (str "reference/" k))
                                              (= "true" jyutping)
                                              ))}))
@@ -90,7 +92,6 @@
       (site {:session {:store store}})))
 
 (defn -main [& [port]]
-  (println (pr-str (reference-files)))
   (let [port (Integer. (or port (env :port) 5000))]
     (jetty/run-jetty (wrap-app #'app) {:port port :join? false})))
 

@@ -46,9 +46,12 @@
 
 (def path "https://translate.google.com/translate_a/single?client=t&sl=auto&tl=en&hl=en&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&dt=at&ie=UTF-8&oe=UTF-8&pc=1&otf=1&ssel=0&tsel=0&tk=519404|591318&q=")
 
-(defonce cookie-store (let [cookie-store (clj-http.cookies/cookie-store)]
-                        (client/get "https://translate.google.com" {:cookie-store cookie-store})
-                        cookie-store))
+(defonce cookie-store
+  (try
+    (let [cookie-store (clj-http.cookies/cookie-store)]
+      (client/get "https://translate.google.com" {:cookie-store cookie-store})
+      cookie-store)
+  (catch Exception e (println e))))
 
 
 (defn translate-section
@@ -124,5 +127,11 @@
 
 (def translate2 (memoize translate))
 
-#_(defn pinyinize [s]
-    (apply str (map #(if (han? %) (str (han->pinyin %) " ") %) s)))
+(defn translate-f [f]
+  (spit
+   (str "resources/translated/" f)
+   (pr-str
+    (translate
+     (slurp (str "resources/reference/" f)) true))))
+
+;(translate-f "lesson-10-11-12")
